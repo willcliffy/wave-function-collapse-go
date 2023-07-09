@@ -1,8 +1,19 @@
 package main
 
 import (
+	"encoding/json"
+	"os"
+
 	"github.com/willcliffy/wfc_golang/generator"
 	"github.com/willcliffy/wfc_golang/models"
+)
+
+var (
+	EmptySlot           = ""
+	SquareSlot          = "aaaa"
+	BottomRectangleSlot = "bbbb"
+	RampUpSlot          = "cccc"
+	RampDownSlot        = "dddd"
 )
 
 func main() {
@@ -11,18 +22,56 @@ func main() {
 
 	var allPossibleModules []models.Module
 
-	// TODO - load modules here
-	flatModuleSet := models.NewModuleSet("", models.ModuleSlots{})
+	// TODO - automate loading and analyzing cube meshes
+	emptyModule := models.NewModule("empty", models.ModuleSlots{
+		PositiveX: EmptySlot,
+		PositiveY: EmptySlot,
+		PositiveZ: EmptySlot,
+		NegativeX: EmptySlot,
+		NegativeY: EmptySlot,
+		NegativeZ: EmptySlot,
+	}, models.RotationY_000)
+	allPossibleModules = append(allPossibleModules, emptyModule)
+
+	cornerModuleSet := models.NewModuleSet("cube.glb", models.ModuleSlots{
+		PositiveX: SquareSlot,
+		PositiveY: SquareSlot,
+		PositiveZ: SquareSlot,
+		NegativeX: SquareSlot,
+		NegativeY: SquareSlot,
+		NegativeZ: SquareSlot,
+	})
+	allPossibleModules = append(allPossibleModules, cornerModuleSet...)
+
+	flatModuleSet := models.NewModuleSet("corner.glb", models.ModuleSlots{
+		PositiveX: RampUpSlot,
+		PositiveY: EmptySlot,
+		PositiveZ: BottomRectangleSlot,
+		NegativeX: BottomRectangleSlot,
+		NegativeY: SquareSlot,
+		NegativeZ: RampDownSlot,
+	})
 	allPossibleModules = append(allPossibleModules, flatModuleSet...)
 
-	rampModuleSet := models.NewModuleSet("", models.ModuleSlots{})
+	rampModuleSet := models.NewModuleSet("ramp.glb", models.ModuleSlots{
+		PositiveX: SquareSlot,
+		PositiveY: EmptySlot,
+		PositiveZ: RampUpSlot,
+		NegativeX: BottomRectangleSlot,
+		NegativeY: SquareSlot,
+		NegativeZ: RampDownSlot,
+	})
 	allPossibleModules = append(allPossibleModules, rampModuleSet...)
 
-	cubeModuleSet := models.NewModuleSet("", models.ModuleSlots{})
+	cubeModuleSet := models.NewModuleSet("flat.glb", models.ModuleSlots{
+		PositiveX: BottomRectangleSlot,
+		PositiveY: EmptySlot,
+		PositiveZ: BottomRectangleSlot,
+		NegativeX: BottomRectangleSlot,
+		NegativeY: SquareSlot,
+		NegativeZ: BottomRectangleSlot,
+	})
 	allPossibleModules = append(allPossibleModules, cubeModuleSet...)
-
-	cornerModuleSet := models.NewModuleSet("", models.ModuleSlots{})
-	allPossibleModules = append(allPossibleModules, cornerModuleSet...)
 
 	ok := mapGenerator.Initialize(allPossibleModules)
 	if !ok {
@@ -30,6 +79,17 @@ func main() {
 	}
 
 	done := make(chan bool)
-	mapGenerator.Run(done)
+	go mapGenerator.Run(done)
 	<-done
+
+	finalMap := mapGenerator.GetFinalMap()
+	jsonData, err := json.Marshal(finalMap)
+	if err != nil {
+		panic(err)
+	}
+
+	err = os.WriteFile("output.json", jsonData, 0644)
+	if err != nil {
+		panic(err)
+	}
 }

@@ -1,6 +1,8 @@
 package models
 
-import uuid "github.com/satori/go.uuid"
+import (
+	uuid "github.com/satori/go.uuid"
+)
 
 type ModuleSlots struct {
 	PositiveX string
@@ -40,7 +42,7 @@ func (ms ModuleSlots) RotatedSlots(yRotation int) ModuleSlots {
 type Module struct {
 	ID       string
 	Filename string
-	Position Vector3
+	Position Vector3i
 	Rotation ModuleRotation
 	Slots    ModuleSlots
 }
@@ -54,6 +56,15 @@ func NewModule(filename string, slots ModuleSlots, rotation ModuleRotation) Modu
 	}
 }
 
+func (m Module) ToWFCMapCell() WFCMapCell {
+	return WFCMapCell{
+		ModuleID: m.ID,
+		Filename: m.Filename,
+		Position: m.Position,
+		Rotation: m.Rotation,
+	}
+}
+
 // Creates a new set of modules from a single file
 // currently, this only supports rotations along the Y axis
 func NewModuleSet(filename string, slots ModuleSlots) []Module {
@@ -62,4 +73,46 @@ func NewModuleSet(filename string, slots ModuleSlots) []Module {
 		modules = append(modules, NewModule(filename, slots.RotatedSlots(rotation.Y), rotation))
 	}
 	return modules
+}
+
+func (m Module) Copy() *Module {
+	return &Module{
+		ID:       m.ID,
+		Filename: m.Filename,
+		Position: m.Position,
+		Rotation: m.Rotation,
+		Slots:    m.Slots,
+	}
+}
+
+func (m Module) CompatibleWith(other *Module) bool {
+	if other == nil {
+		return false
+	}
+
+	if m.Position.Distance(other.Position) > 1 {
+		return false
+	}
+
+	if m.Position.X != other.Position.X {
+		if m.Position.X > other.Position.X {
+			return m.Slots.NegativeX == other.Slots.PositiveX
+		} else {
+			return m.Slots.PositiveX == other.Slots.NegativeX
+		}
+	} else if m.Position.Y != other.Position.Y {
+		if m.Position.Y > other.Position.Y {
+			return m.Slots.NegativeY == other.Slots.PositiveY
+		} else {
+			return m.Slots.PositiveY == other.Slots.NegativeY
+		}
+	} else if m.Position.Z != other.Position.Z {
+		if m.Position.Z > other.Position.Z {
+			return m.Slots.NegativeZ == other.Slots.PositiveZ
+		} else {
+			return m.Slots.PositiveZ == other.Slots.NegativeZ
+		}
+	}
+
+	return true
 }
