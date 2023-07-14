@@ -9,11 +9,13 @@ import (
 )
 
 var (
-	EmptySlot           = ""
-	SquareSlot          = "aaaa"
-	BottomRectangleSlot = "bbbb"
-	RampUpSlot          = "cccc"
-	RampDownSlot        = "dddd"
+	EmptySlot            = ""
+	SquareSlot           = "square"
+	BottomRectangleSlot  = "rect"
+	PositiveRampUpSlot   = "rampUp"
+	PositiveRampDownSlot = "rampDown"
+	NegativeRampUpSlot   = PositiveRampDownSlot
+	NegativeRampDownSlot = PositiveRampUpSlot
 )
 
 func main() {
@@ -33,45 +35,45 @@ func main() {
 	}, models.RotationY_000)
 	allPossibleModules = append(allPossibleModules, emptyModule)
 
-	cornerModuleSet := models.NewModuleSet("cube.glb", models.ModuleSlots{
+	cubeModule := models.NewModule("cube.glb", models.ModuleSlots{
 		PositiveX: SquareSlot,
 		PositiveY: SquareSlot,
 		PositiveZ: SquareSlot,
 		NegativeX: SquareSlot,
 		NegativeY: SquareSlot,
 		NegativeZ: SquareSlot,
-	})
-	allPossibleModules = append(allPossibleModules, cornerModuleSet...)
+	}, models.RotationY_000)
+	allPossibleModules = append(allPossibleModules, cubeModule)
 
-	flatModuleSet := models.NewModuleSet("corner.glb", models.ModuleSlots{
-		PositiveX: RampUpSlot,
-		PositiveY: EmptySlot,
-		PositiveZ: BottomRectangleSlot,
-		NegativeX: BottomRectangleSlot,
-		NegativeY: SquareSlot,
-		NegativeZ: RampDownSlot,
-	})
-	allPossibleModules = append(allPossibleModules, flatModuleSet...)
-
-	rampModuleSet := models.NewModuleSet("ramp.glb", models.ModuleSlots{
-		PositiveX: SquareSlot,
-		PositiveY: EmptySlot,
-		PositiveZ: RampUpSlot,
-		NegativeX: BottomRectangleSlot,
-		NegativeY: SquareSlot,
-		NegativeZ: RampDownSlot,
-	})
-	allPossibleModules = append(allPossibleModules, rampModuleSet...)
-
-	cubeModuleSet := models.NewModuleSet("flat.glb", models.ModuleSlots{
+	flatModule := models.NewModule("flat.glb", models.ModuleSlots{
 		PositiveX: BottomRectangleSlot,
 		PositiveY: EmptySlot,
 		PositiveZ: BottomRectangleSlot,
 		NegativeX: BottomRectangleSlot,
 		NegativeY: SquareSlot,
 		NegativeZ: BottomRectangleSlot,
+	}, models.RotationY_000)
+	allPossibleModules = append(allPossibleModules, flatModule)
+
+	cornerModuleSet := models.NewModuleSet("corner.glb", models.ModuleSlots{
+		PositiveX: PositiveRampUpSlot,
+		PositiveY: EmptySlot,
+		PositiveZ: BottomRectangleSlot,
+		NegativeX: BottomRectangleSlot,
+		NegativeY: SquareSlot,
+		NegativeZ: NegativeRampDownSlot,
 	})
-	allPossibleModules = append(allPossibleModules, cubeModuleSet...)
+	allPossibleModules = append(allPossibleModules, cornerModuleSet...)
+
+	rampModuleSet := models.NewModuleSet("ramp.glb", models.ModuleSlots{
+		PositiveX: SquareSlot,
+		PositiveY: EmptySlot,
+		PositiveZ: PositiveRampUpSlot,
+		NegativeX: BottomRectangleSlot,
+		NegativeY: SquareSlot,
+		NegativeZ: NegativeRampDownSlot,
+	})
+	allPossibleModules = append(allPossibleModules, rampModuleSet...)
 
 	ok := mapGenerator.Initialize(allPossibleModules)
 	if !ok {
@@ -88,7 +90,7 @@ func main() {
 		panic(err)
 	}
 
-	err = os.WriteFile("output.json", jsonData, 0644)
+	err = os.WriteFile("modules.json", jsonData, 0644)
 	if err != nil {
 		panic(err)
 	}

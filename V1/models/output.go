@@ -8,7 +8,7 @@ type WFCMapCell struct {
 	ModuleID string
 	Filename string
 	Position Vector3i
-	Rotation ModuleRotation
+	Rotation int
 }
 
 type WFCMap []WFCMapCell

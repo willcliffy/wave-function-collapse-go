@@ -27,11 +27,11 @@ func (ms ModuleSlots) RotatedSlots(yRotation int) ModuleSlots {
 
 	switch yRotation {
 	case 90:
-		rotated = ModuleSlots{ms.NegativeZ, ms.PositiveY, ms.PositiveX, ms.PositiveZ, ms.NegativeY, ms.NegativeX}
+		rotated = ModuleSlots{ms.PositiveZ, ms.PositiveY, ms.NegativeX, ms.NegativeZ, ms.NegativeY, ms.PositiveX}
 	case 180:
 		rotated = ModuleSlots{ms.NegativeX, ms.PositiveY, ms.NegativeZ, ms.PositiveX, ms.NegativeY, ms.PositiveZ}
 	case 270:
-		rotated = ModuleSlots{ms.PositiveZ, ms.PositiveY, ms.NegativeX, ms.NegativeZ, ms.NegativeY, ms.PositiveX}
+		rotated = ModuleSlots{ms.NegativeZ, ms.PositiveY, ms.PositiveX, ms.PositiveZ, ms.NegativeY, ms.NegativeX}
 	default: // 0 and multiples of 360
 		rotated = ms
 	}
@@ -61,7 +61,7 @@ func (m Module) ToWFCMapCell() WFCMapCell {
 		ModuleID: m.ID,
 		Filename: m.Filename,
 		Position: m.Position,
-		Rotation: m.Rotation,
+		Rotation: m.Rotation.Y,
 	}
 }
 

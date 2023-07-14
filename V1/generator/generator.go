@@ -73,8 +73,22 @@ func (wfc *WFCMapGenerator) Initialize(allPossibleModules []models.Module) bool 
 				}
 			}
 		}
-
 	}
+
+	// var cube models.Module
+	// for _, mod := range allPossibleModules {
+	// 	if mod.Filename == "cube.glb" {
+	// 		cube = mod
+	// 		break
+	// 	}
+	// }
+	// cell := models.Vector3i{X: wfc.Size.X / 2, Y: wfc.Size.Y / 2, Z: wfc.Size.Z / 2}
+	// wfc.CurrentMap[cell.X][cell.Z][cell.Y] = []*models.Module{&cube}
+	// wfc.propagate(&cell, []*models.Module{&cube})
+	// for i := range wfc.CurrentMap {
+	// 	fmt.Println(wfc.CurrentMap[i])
+	// }
+
 	return true
 }
 
@@ -173,10 +187,15 @@ func (wfc *WFCMapGenerator) propagate(cell *models.Vector3i, modules []*models.M
 						if module.CompatibleWith(possibleModule) {
 							compatibleModuleFound = true
 							break
+						} else {
+							if possibleModule.Filename == "cube.glb" && module.Filename == "ramp.glb" {
+								fmt.Printf("cube at %v not compat with ramp: %+v, %v\n", possibleModule.Position, module.Position, module.Rotation)
+							}
 						}
 					}
 
 					if compatibleModuleFound {
+
 						newCell = append(newCell, possibleModule)
 					} else {
 						cellChanged = true
@@ -185,7 +204,9 @@ func (wfc *WFCMapGenerator) propagate(cell *models.Vector3i, modules []*models.M
 
 				if cellChanged {
 					wfc.CurrentMap[i][j][k] = newCell
-					changed[models.Vector3i{X: i, Z: j, Y: k}] = wfc.CurrentMap[i][j][k]
+					if len(newCell) > 0 {
+						changed[models.Vector3i{X: i, Z: j, Y: k}] = wfc.CurrentMap[i][j][k]
+					}
 				}
 			}
 		}
