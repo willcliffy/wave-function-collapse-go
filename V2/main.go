@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"os"
 )
@@ -11,7 +12,15 @@ var (
 )
 
 func main() {
-	prototypes, err := loadPrototypeDataFromFile("prototype_data.json")
+	prototypeFileFlag := flag.String("input", "prototype_data.json", "Input file containing module (prototype) data")
+	outputFileFlag := flag.String("output", "map.json", "Output file path/name")
+	flag.Parse()
+
+	if prototypeFileFlag == nil || *prototypeFileFlag == "" {
+		panic("No prototype file provided")
+	}
+
+	prototypes, err := loadPrototypeDataFromFile(*prototypeFileFlag)
 	if err != nil {
 		panic(err)
 	}
@@ -28,7 +37,7 @@ func main() {
 
 	wfcMap := wfc.GetFinalMap()
 
-	err = saveMapDataToFile(wfcMap, "map.json")
+	err = saveMapDataToFile(wfcMap, *outputFileFlag)
 	if err != nil {
 		panic(err)
 	}
@@ -49,7 +58,7 @@ func loadPrototypeDataFromFile(filename string) (map[string]WFCPrototype, error)
 	return prototypes, nil
 }
 
-func saveMapDataToFile(wfcMap *WFCMap, filePath string) error {
+func saveMapDataToFile(wfcMap interface{}, filePath string) error {
 	prototypeJSON, err := json.Marshal(wfcMap)
 	if err != nil {
 		return fmt.Errorf("failed to marshal prototype to JSON: %v", err)

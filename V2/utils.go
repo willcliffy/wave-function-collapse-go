@@ -1,6 +1,6 @@
 package main
 
-func contains[T comparable](elems []T, v T) bool {
+func StringSliceContains(elems []string, v string) bool {
 	for _, s := range elems {
 		if v == s {
 			return true

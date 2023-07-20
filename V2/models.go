@@ -30,6 +30,20 @@ func (v Vector3i) Add(other Vector3i) Vector3i {
 	}
 }
 
+func (v Vector3i) Equals(other Vector3i) bool {
+	return v.X == other.X && v.Y == other.Y && v.Z == other.Z
+}
+
+func Vector3iSliceContains(slice []Vector3i, elem Vector3i) bool {
+	for _, vec := range slice {
+		if vec.Equals(elem) {
+			return true
+		}
+	}
+
+	return false
+}
+
 func (v Vector3i) Distance(other Vector3i) float64 {
 	dx := v.X - other.X
 	dy := v.Y - other.Y
@@ -55,9 +69,15 @@ type WFCPrototype struct {
 	ConstrainFrom   string     `json:"constrain_from"`
 	Weight          int        `json:"weight"`
 	ValidNeighbours [][]string `json:"valid_neighbours"`
+	Position        *Vector3i  `json:"position,omitempty"`
 }
 
 type WFCMap struct {
 	Size       Vector3i
 	Prototypes [][][]WFCPrototype
+}
+
+type WFCMapLinear struct {
+	Size       Vector3i
+	Prototypes []WFCPrototype
 }

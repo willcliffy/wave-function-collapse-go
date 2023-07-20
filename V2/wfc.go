@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/gob"
 	"fmt"
+	"math"
 	"math/rand"
 )
 
@@ -39,11 +40,12 @@ var (
 type WFCModel interface {
 	Initialize(newSize Vector3i, allPrototypes map[string]WFCPrototype)
 	Run(chan bool)
-	GetFinalMap() *WFCMap
+	GetFinalMap() *WFCMapLinear
 }
 
 type WFC struct {
 	waveFunction [][][]map[string]WFCPrototype
+	finalMap     WFCMapLinear
 	size         Vector3i
 }
 
@@ -61,6 +63,7 @@ func deepCopy(src, dst interface{}) error {
 
 func (wfc *WFC) Initialize(newSize Vector3i, allPrototypes map[string]WFCPrototype) {
 	wfc.size = newSize
+	wfc.finalMap.Size = newSize
 	for z := 0; z < wfc.size.Z; z++ {
 		var ySlice [][]map[string]WFCPrototype
 		for y := 0; y < wfc.size.Y; y++ {
@@ -87,44 +90,46 @@ func (wfc *WFC) Run(doneChan chan bool) {
 			break
 		}
 
-		wfc.collapse(*min_entropy_coords)
+		wfc.collapse(min_entropy_coords)
+		fmt.Printf("tick\n")
 		wfc.propagate(min_entropy_coords, false)
+		fmt.Printf("tick\n")
 	}
 
 	doneChan <- true
 }
 
-func (wfc WFC) GetFinalMap() *WFCMap {
+func (wfc WFC) GetFinalMap() *WFCMapLinear {
 	if !wfc.isCollapsed() {
 		return nil
 	}
 
-	result := WFCMap{
-		Size:       wfc.size,
-		Prototypes: make([][][]WFCPrototype, wfc.size.Z),
-	}
+	// result := WFCMap{
+	// 	Size:       wfc.size,
+	// 	Prototypes: make([][][]WFCPrototype, wfc.size.Z),
+	// }
 
-	for z := 0; z < wfc.size.Z; z++ {
-		result.Prototypes[z] = make([][]WFCPrototype, wfc.size.Y)
-		for y := 0; y < wfc.size.Y; y++ {
-			result.Prototypes[z][y] = make([]WFCPrototype, wfc.size.X)
-			for x := 0; x < wfc.size.Z; x++ {
-				prototypes := wfc.waveFunction[z][y][x]
+	// for z := 0; z < wfc.size.Z; z++ {
+	// 	result.Prototypes[z] = make([][]WFCPrototype, wfc.size.Y)
+	// 	for y := 0; y < wfc.size.Y; y++ {
+	// 		result.Prototypes[z][y] = make([]WFCPrototype, wfc.size.X)
+	// 		for x := 0; x < wfc.size.Z; x++ {
+	// 			prototypes := wfc.waveFunction[z][y][x]
 
-				// only grab collapsed cells (?)
-				if len(prototypes) > 1 {
-					fmt.Printf("[WARN] Uncollapsed cell in GetFinalMap")
-					continue
-				}
+	// 			// only grab collapsed cells (?)
+	// 			if len(prototypes) > 1 {
+	// 				fmt.Printf("[WARN] Uncollapsed cell in GetFinalMap")
+	// 				continue
+	// 			}
 
-				for _, prototype := range prototypes {
-					result.Prototypes[x][y][z] = prototype
-				}
-			}
-		}
-	}
+	// 			for _, prototype := range prototypes {
+	// 				result.Prototypes[x][y][z] = prototype
+	// 			}
+	// 		}
+	// 	}
+	// }
 
-	return &result
+	return &wfc.finalMap
 }
 
 func (wfc *WFC) propagate(coords *Vector3i, singleIteration bool) {
@@ -134,10 +139,11 @@ func (wfc *WFC) propagate(coords *Vector3i, singleIteration bool) {
 	}
 
 	for len(stack) > 0 {
-		currentCoords := stack[0]
-		stack = stack[1:]
+		stackLen := len(stack)
+		currentCoords := stack[stackLen-1]
+		stack = stack[:stackLen-1]
 
-		for _, direction := range wfc.validDirections(currentCoords) {
+		for _, direction := range wfc.validDirections(&currentCoords) {
 			otherCoords := currentCoords.Add(direction)
 			otherProtos := wfc.waveFunction[otherCoords.Z][otherCoords.Y][otherCoords.X]
 
@@ -145,18 +151,24 @@ func (wfc *WFC) propagate(coords *Vector3i, singleIteration bool) {
 				continue
 			}
 
-			possibleNeighbors := wfc.getPossibleNeighbours(currentCoords, direction)
+			possibleNeighbors := wfc.getPossibleNeighbours(&currentCoords, direction)
 			for otherProto := range otherProtos {
-				if contains[string](possibleNeighbors, otherProto) {
+				if StringSliceContains(possibleNeighbors, otherProto) {
 					continue
 				}
 
 				// Constrain
 				delete(wfc.waveFunction[coords.Z][coords.Y][coords.X], otherProto)
 
-				if !contains[Vector3i](stack, otherCoords) {
+				if len(wfc.waveFunction[coords.Z][coords.Y][coords.X]) == 1 {
+					for _, v := range wfc.waveFunction[coords.Z][coords.Y][coords.X] {
+						wfc.finalMap.Prototypes = append(wfc.finalMap.Prototypes, v)
+					}
+				}
+
+				if !Vector3iSliceContains(stack, otherCoords) {
 					stack = append(stack, otherCoords)
-					// TODO - infinite loop?
+					fmt.Printf("Stack doesnt contain %v - %v\n", otherCoords, stack)
 				}
 			}
 		}
@@ -180,18 +192,14 @@ func (wfc *WFC) isCollapsed() bool {
 	return true
 }
 
-func (wfc *WFC) getEntropy(coords Vector3i) int {
-	return len(wfc.waveFunction[coords.Z][coords.Y][coords.X])
-}
-
-func (wfc *WFC) getPossibleNeighbours(coords Vector3i, dir Vector3i) []string {
+func (wfc *WFC) getPossibleNeighbours(coords *Vector3i, dir Vector3i) []string {
 	var validNeighbours []string
 	prototypes := wfc.waveFunction[coords.Z][coords.Y][coords.X]
 	dirIdx := DIRECTION_TO_INDEX[dir]
 	for _, prototype := range prototypes {
 		neighbours := prototype.ValidNeighbours[dirIdx]
 		for _, neighbor := range neighbours {
-			if !contains(validNeighbours, neighbor) {
+			if !StringSliceContains(validNeighbours, neighbor) {
 				validNeighbours = append(validNeighbours, neighbor)
 			}
 		}
@@ -199,10 +207,11 @@ func (wfc *WFC) getPossibleNeighbours(coords Vector3i, dir Vector3i) []string {
 	return validNeighbours
 }
 
-func (wfc *WFC) collapse(coords Vector3i) {
+func (wfc *WFC) collapse(coords *Vector3i) {
 	possibleProtos := wfc.waveFunction[coords.Z][coords.Y][coords.X]
 	protoName := wfc.weightedChoice(possibleProtos)
 	wfc.waveFunction[coords.Z][coords.Y][coords.X] = map[string]WFCPrototype{protoName: possibleProtos[protoName]}
+	wfc.finalMap.Prototypes = append(wfc.finalMap.Prototypes, possibleProtos[protoName])
 }
 
 func (wfc *WFC) weightedChoice(prototypes map[string]WFCPrototype) string {
@@ -226,16 +235,16 @@ func (wfc *WFC) weightedChoice(prototypes map[string]WFCPrototype) string {
 }
 
 func (wfc *WFC) getMinEntropyCoords() *Vector3i {
-	var minEntropy int
+	minEntropy := math.MaxInt
 	var coords *Vector3i
 	for z := 0; z < wfc.size.Z; z++ {
 		for y := 0; y < wfc.size.Y; y++ {
 			for x := 0; x < wfc.size.Z; x++ {
-				entropy := wfc.getEntropy(Vector3i{X: x, Y: y, Z: z})
+				entropy := len(wfc.waveFunction[z][y][x])
 				if entropy > 1 {
 					entropy += int(rand.Float64()*0.2 - 0.1) // Add random float between -0.1 and 0.1
 
-					if minEntropy == 0 || entropy < minEntropy {
+					if entropy < minEntropy {
 						minEntropy = entropy
 						coords = &Vector3i{X: x, Y: y, Z: z}
 					}
@@ -246,7 +255,7 @@ func (wfc *WFC) getMinEntropyCoords() *Vector3i {
 	return coords
 }
 
-func (wfc *WFC) validDirections(coords Vector3i) []Vector3i {
+func (wfc *WFC) validDirections(coords *Vector3i) []Vector3i {
 	var dirs []Vector3i
 
 	if coords.X > 0 {
