@@ -69,7 +69,20 @@ type WFCPrototype struct {
 	ConstrainFrom   string     `json:"constrain_from"`
 	Weight          int        `json:"weight"`
 	ValidNeighbours [][]string `json:"valid_neighbours"`
-	Position        *Vector3i  `json:"position,omitempty"`
+}
+
+type WFCPrototypeFinalized struct {
+	MeshName     string    `json:"mesh_name"`
+	MeshRotation int       `json:"mesh_rotation"`
+	Position     *Vector3i `json:"position,omitempty"`
+}
+
+func (wfc *WFCPrototype) Finalize(position *Vector3i) *WFCPrototypeFinalized {
+	return &WFCPrototypeFinalized{
+		MeshName:     wfc.MeshName,
+		MeshRotation: wfc.MeshRotation * 90,
+		Position:     position,
+	}
 }
 
 type WFCMap struct {
@@ -79,5 +92,5 @@ type WFCMap struct {
 
 type WFCMapLinear struct {
 	Size       Vector3i
-	Prototypes []WFCPrototype
+	Prototypes []WFCPrototypeFinalized
 }

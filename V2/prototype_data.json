@@ -1,78 +1,134 @@
 {
 	"p0": {
-		"mesh_name": "wfc_module_0",
+		"mesh_name": "wfc_module_0_002",
 		"mesh_rotation": 0,
-		"posX": "0",
-		"negX": "1s",
-		"posY": "1s",
-		"negY": "0f",
-		"posZ": "v0_0",
+		"posX": "0s",
+		"negX": "0s",
+		"posY": "0s",
+		"negY": "0s",
+		"posZ": "-1",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p3"
-			],
-			[
+				"p0",
 				"p1",
-				"p2"
-			],
-			[
 				"p2",
-				"p3"
+				"p3",
+				"p9",
+				"p15",
+				"p18",
+				"p19"
 			],
 			[
-				"p1"
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p10",
+				"p12",
+				"p16",
+				"p19"
 			],
-			[],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p11",
+				"p13",
+				"p16",
+				"p17"
+			],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p8",
+				"p14",
+				"p17",
+				"p18"
+			],
+			[
+				"p-1"
+			],
 			[
 				"p-1"
 			]
 		]
 	},
 	"p1": {
-		"mesh_name": "wfc_module_0",
+		"mesh_name": "wfc_module_0_002",
 		"mesh_rotation": 1,
-		"posX": "0f",
-		"negX": "1s",
-		"posY": "0",
-		"negY": "1s",
-		"posZ": "v0_1",
+		"posX": "0s",
+		"negX": "0s",
+		"posY": "0s",
+		"negY": "0s",
+		"posZ": "-1",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p2"
-			],
-			[
-				"p0"
-			],
-			[
+				"p0",
+				"p1",
 				"p2",
-				"p3"
+				"p3",
+				"p9",
+				"p15",
+				"p18",
+				"p19"
 			],
 			[
 				"p0",
-				"p3"
+				"p1",
+				"p2",
+				"p3",
+				"p10",
+				"p12",
+				"p16",
+				"p19"
 			],
-			[],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p11",
+				"p13",
+				"p16",
+				"p17"
+			],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p8",
+				"p14",
+				"p17",
+				"p18"
+			],
+			[
+				"p-1"
+			],
 			[
 				"p-1"
 			]
 		]
 	},
 	"p2": {
-		"mesh_name": "wfc_module_0",
+		"mesh_name": "wfc_module_0_002",
 		"mesh_rotation": 2,
-		"posX": "1s",
-		"negX": "0",
-		"posY": "0f",
-		"negY": "1s",
-		"posZ": "v0_2",
+		"posX": "0s",
+		"negX": "0s",
+		"posY": "0s",
+		"negY": "0s",
+		"posZ": "-1",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
@@ -80,32 +136,60 @@
 		"valid_neighbours": [
 			[
 				"p0",
-				"p1"
-			],
-			[
-				"p3"
-			],
-			[
-				"p1"
+				"p1",
+				"p2",
+				"p3",
+				"p9",
+				"p15",
+				"p18",
+				"p19"
 			],
 			[
 				"p0",
-				"p3"
+				"p1",
+				"p2",
+				"p3",
+				"p10",
+				"p12",
+				"p16",
+				"p19"
 			],
-			[],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p11",
+				"p13",
+				"p16",
+				"p17"
+			],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p8",
+				"p14",
+				"p17",
+				"p18"
+			],
+			[
+				"p-1"
+			],
 			[
 				"p-1"
 			]
 		]
 	},
 	"p3": {
-		"mesh_name": "wfc_module_0",
+		"mesh_name": "wfc_module_0_002",
 		"mesh_rotation": 3,
-		"posX": "1s",
-		"negX": "0f",
-		"posY": "1s",
-		"negY": "0",
-		"posZ": "v0_3",
+		"posX": "0s",
+		"negX": "0s",
+		"posY": "0s",
+		"negY": "0s",
+		"posZ": "-1",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
@@ -113,19 +197,47 @@
 		"valid_neighbours": [
 			[
 				"p0",
-				"p1"
-			],
-			[
 				"p1",
-				"p2"
+				"p2",
+				"p3",
+				"p9",
+				"p15",
+				"p18",
+				"p19"
 			],
 			[
-				"p0"
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p10",
+				"p12",
+				"p16",
+				"p19"
 			],
 			[
-				"p2"
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p11",
+				"p13",
+				"p16",
+				"p17"
 			],
-			[],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p8",
+				"p14",
+				"p17",
+				"p18"
+			],
+			[
+				"p-1"
+			],
 			[
 				"p-1"
 			]
@@ -134,243 +246,319 @@
 	"p4": {
 		"mesh_name": "wfc_module_1",
 		"mesh_rotation": 0,
-		"posX": "2",
-		"negX": "3f",
-		"posY": "3",
-		"negY": "2f",
+		"posX": "-1",
+		"negX": "1f",
+		"posY": "1",
+		"negY": "-1",
 		"posZ": "-1",
-		"negZ": "-1",
+		"negZ": "v0_0",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p7"
+				"p-1"
 			],
 			[
-				"p5"
+				"p5",
+				"p9"
 			],
 			[
-				"p7"
-			],
-			[
-				"p5"
+				"p7",
+				"p8"
 			],
 			[
 				"p-1"
 			],
 			[
 				"p-1"
+			],
+			[
+				"p16"
 			]
 		]
 	},
 	"p5": {
 		"mesh_name": "wfc_module_1",
 		"mesh_rotation": 1,
-		"posX": "2f",
-		"negX": "3",
-		"posY": "2",
-		"negY": "3f",
+		"posX": "-1",
+		"negX": "1",
+		"posY": "-1",
+		"negY": "1f",
 		"posZ": "-1",
-		"negZ": "-1",
+		"negZ": "v0_1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p6"
+				"p-1"
 			],
 			[
-				"p4"
+				"p-1"
 			],
 			[
-				"p6"
+				"p6",
+				"p10"
 			],
 			[
-				"p4"
+				"p4",
+				"p9"
 			],
 			[
 				"p-1"
 			],
 			[
-				"p-1"
+				"p17"
 			]
 		]
 	},
 	"p6": {
 		"mesh_name": "wfc_module_1",
 		"mesh_rotation": 2,
-		"posX": "3f",
-		"negX": "2",
-		"posY": "2f",
-		"negY": "3",
+		"posX": "1f",
+		"negX": "-1",
+		"posY": "-1",
+		"negY": "1",
 		"posZ": "-1",
-		"negZ": "-1",
+		"negZ": "v0_2",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p5"
-			],
-			[
-				"p7"
-			],
-			[
-				"p5"
-			],
-			[
-				"p7"
+				"p5",
+				"p10"
 			],
 			[
 				"p-1"
 			],
 			[
 				"p-1"
+			],
+			[
+				"p7",
+				"p11"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p18"
 			]
 		]
 	},
 	"p7": {
 		"mesh_name": "wfc_module_1",
 		"mesh_rotation": 3,
-		"posX": "3",
-		"negX": "2f",
-		"posY": "3f",
-		"negY": "2",
+		"posX": "1",
+		"negX": "-1",
+		"posY": "1f",
+		"negY": "-1",
 		"posZ": "-1",
-		"negZ": "-1",
+		"negZ": "v0_3",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p4"
+				"p4",
+				"p8"
 			],
 			[
-				"p6"
-			],
-			[
-				"p4"
-			],
-			[
-				"p6"
+				"p6",
+				"p11"
 			],
 			[
 				"p-1"
 			],
 			[
 				"p-1"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p19"
 			]
 		]
 	},
 	"p8": {
 		"mesh_name": "wfc_module_2",
 		"mesh_rotation": 0,
-		"posX": "4",
-		"negX": "6",
-		"posY": "5s",
-		"negY": "7",
-		"posZ": "v1_0",
-		"negZ": "-1",
+		"posX": "1",
+		"negX": "1f",
+		"posY": "0s",
+		"negY": "-1",
+		"posZ": "-1",
+		"negZ": "v1_0",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
-			[],
 			[
-				"p10"
+				"p4",
+				"p8"
 			],
-			[],
-			[],
-			[],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p10",
+				"p12",
+				"p16",
+				"p19"
+			],
+			[
+				"p7",
+				"p8"
+			],
 			[
 				"p-1"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p12"
 			]
 		]
 	},
 	"p9": {
 		"mesh_name": "wfc_module_2",
 		"mesh_rotation": 1,
-		"posX": "7",
-		"negX": "5s",
-		"posY": "4",
-		"negY": "6",
-		"posZ": "v1_1",
-		"negZ": "-1",
+		"posX": "-1",
+		"negX": "0s",
+		"posY": "1",
+		"negY": "1f",
+		"posZ": "-1",
+		"negZ": "v1_1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
-			[],
-			[],
-			[
-				"p11"
-			],
-			[],
-			[],
 			[
 				"p-1"
+			],
+			[
+				"p5",
+				"p9"
+			],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p11",
+				"p13",
+				"p16",
+				"p17"
+			],
+			[
+				"p4",
+				"p9"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p13"
 			]
 		]
 	},
 	"p10": {
 		"mesh_name": "wfc_module_2",
 		"mesh_rotation": 2,
-		"posX": "6",
-		"negX": "4",
-		"posY": "7",
-		"negY": "5s",
-		"posZ": "v1_2",
-		"negZ": "-1",
+		"posX": "1f",
+		"negX": "1",
+		"posY": "-1",
+		"negY": "0s",
+		"posZ": "-1",
+		"negZ": "v1_2",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
-			[],
-			[],
-			[],
 			[
-				"p8"
+				"p5",
+				"p10"
 			],
-			[],
 			[
 				"p-1"
+			],
+			[
+				"p6",
+				"p10"
+			],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p8",
+				"p14",
+				"p17",
+				"p18"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p14"
 			]
 		]
 	},
 	"p11": {
 		"mesh_name": "wfc_module_2",
 		"mesh_rotation": 3,
-		"posX": "5s",
-		"negX": "7",
-		"posY": "6",
-		"negY": "4",
-		"posZ": "v1_3",
-		"negZ": "-1",
+		"posX": "0s",
+		"negX": "-1",
+		"posY": "1f",
+		"negY": "1",
+		"posZ": "-1",
+		"negZ": "v1_3",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p9"
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p9",
+				"p15",
+				"p18",
+				"p19"
 			],
-			[],
-			[],
-			[],
-			[],
+			[
+				"p6",
+				"p11"
+			],
 			[
 				"p-1"
+			],
+			[
+				"p7",
+				"p11"
+			],
+			[
+				"p-1"
+			],
+			[
+				"p15"
 			]
 		]
 	},
 	"p12": {
 		"mesh_name": "wfc_module_3",
 		"mesh_rotation": 0,
-		"posX": "8s",
-		"negX": "8s",
-		"posY": "8s",
-		"negY": "8s",
-		"posZ": "-1",
+		"posX": "2",
+		"negX": "2f",
+		"posY": "-1",
+		"negY": "0s",
+		"posZ": "v1_0",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
@@ -378,30 +566,27 @@
 		"valid_neighbours": [
 			[
 				"p12",
-				"p13",
-				"p14",
-				"p15"
-			],
-			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
-			],
-			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
-			],
-			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
+				"p16"
 			],
 			[
 				"p-1"
+			],
+			[
+				"p12",
+				"p19"
+			],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p8",
+				"p14",
+				"p17",
+				"p18"
+			],
+			[
+				"p8"
 			],
 			[
 				"p-1"
@@ -411,42 +596,39 @@
 	"p13": {
 		"mesh_name": "wfc_module_3",
 		"mesh_rotation": 1,
-		"posX": "8s",
-		"negX": "8s",
-		"posY": "8s",
-		"negY": "8s",
-		"posZ": "-1",
+		"posX": "0s",
+		"negX": "-1",
+		"posY": "2",
+		"negY": "2f",
+		"posZ": "v1_1",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p9",
+				"p15",
+				"p18",
+				"p19"
 			],
 			[
-				"p12",
 				"p13",
-				"p14",
-				"p15"
-			],
-			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
-			],
-			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
+				"p17"
 			],
 			[
 				"p-1"
+			],
+			[
+				"p13",
+				"p16"
+			],
+			[
+				"p9"
 			],
 			[
 				"p-1"
@@ -456,42 +638,39 @@
 	"p14": {
 		"mesh_name": "wfc_module_3",
 		"mesh_rotation": 2,
-		"posX": "8s",
-		"negX": "8s",
-		"posY": "8s",
-		"negY": "8s",
-		"posZ": "-1",
+		"posX": "2f",
+		"negX": "2",
+		"posY": "0s",
+		"negY": "-1",
+		"posZ": "v1_2",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p12",
-				"p13",
 				"p14",
-				"p15"
+				"p17"
 			],
 			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p10",
 				"p12",
-				"p13",
-				"p14",
-				"p15"
+				"p16",
+				"p19"
 			],
 			[
-				"p12",
-				"p13",
 				"p14",
-				"p15"
-			],
-			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
+				"p18"
 			],
 			[
 				"p-1"
+			],
+			[
+				"p10"
 			],
 			[
 				"p-1"
@@ -501,42 +680,39 @@
 	"p15": {
 		"mesh_name": "wfc_module_3",
 		"mesh_rotation": 3,
-		"posX": "8s",
-		"negX": "8s",
-		"posY": "8s",
-		"negY": "8s",
-		"posZ": "-1",
+		"posX": "-1",
+		"negX": "0s",
+		"posY": "2f",
+		"negY": "2",
+		"posZ": "v1_3",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
-			],
-			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
-			],
-			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
-			],
-			[
-				"p12",
-				"p13",
-				"p14",
-				"p15"
-			],
-			[
 				"p-1"
+			],
+			[
+				"p15",
+				"p18"
+			],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p11",
+				"p13",
+				"p16",
+				"p17"
+			],
+			[
+				"p15",
+				"p19"
+			],
+			[
+				"p11"
 			],
 			[
 				"p-1"
@@ -546,30 +722,46 @@
 	"p16": {
 		"mesh_name": "wfc_module_4",
 		"mesh_rotation": 0,
-		"posX": "9",
-		"negX": "9f",
-		"posY": "10s",
-		"negY": "11s",
-		"posZ": "-1",
+		"posX": "0s",
+		"negX": "2f",
+		"posY": "2",
+		"negY": "0s",
+		"posZ": "v0_0",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p16"
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p9",
+				"p15",
+				"p18",
+				"p19"
 			],
 			[
+				"p13",
+				"p17"
+			],
+			[
+				"p12",
+				"p19"
+			],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p8",
+				"p14",
+				"p17",
 				"p18"
 			],
 			[
-				"p16"
-			],
-			[
-				"p18"
-			],
-			[
-				"p-1"
+				"p4"
 			],
 			[
 				"p-1"
@@ -579,30 +771,46 @@
 	"p17": {
 		"mesh_name": "wfc_module_4",
 		"mesh_rotation": 1,
-		"posX": "11s",
-		"negX": "10s",
-		"posY": "9",
-		"negY": "9f",
-		"posZ": "-1",
+		"posX": "0s",
+		"negX": "2",
+		"posY": "0s",
+		"negY": "2f",
+		"posZ": "v0_1",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p9",
+				"p15",
+				"p18",
 				"p19"
 			],
 			[
-				"p17"
-			],
-			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p10",
+				"p12",
+				"p16",
 				"p19"
 			],
 			[
-				"p17"
+				"p14",
+				"p18"
 			],
 			[
-				"p-1"
+				"p13",
+				"p16"
+			],
+			[
+				"p5"
 			],
 			[
 				"p-1"
@@ -612,30 +820,46 @@
 	"p18": {
 		"mesh_name": "wfc_module_4",
 		"mesh_rotation": 2,
-		"posX": "9f",
-		"negX": "9",
-		"posY": "11s",
-		"negY": "10s",
-		"posZ": "-1",
+		"posX": "2f",
+		"negX": "0s",
+		"posY": "0s",
+		"negY": "2",
+		"posZ": "v0_2",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
-				"p18"
+				"p14",
+				"p17"
 			],
 			[
-				"p16"
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p10",
+				"p12",
+				"p16",
+				"p19"
 			],
 			[
-				"p18"
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p11",
+				"p13",
+				"p16",
+				"p17"
 			],
 			[
-				"p16"
+				"p15",
+				"p19"
 			],
 			[
-				"p-1"
+				"p6"
 			],
 			[
 				"p-1"
@@ -645,1383 +869,47 @@
 	"p19": {
 		"mesh_name": "wfc_module_4",
 		"mesh_rotation": 3,
-		"posX": "10s",
-		"negX": "11s",
-		"posY": "9f",
-		"negY": "9",
-		"posZ": "-1",
+		"posX": "2",
+		"negX": "0s",
+		"posY": "2f",
+		"negY": "0s",
+		"posZ": "v0_3",
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
 		"weight": 1,
 		"valid_neighbours": [
 			[
+				"p12",
+				"p16"
+			],
+			[
+				"p15",
+				"p18"
+			],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p11",
+				"p13",
+				"p16",
 				"p17"
 			],
 			[
-				"p19"
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p8",
+				"p14",
+				"p17",
+				"p18"
 			],
 			[
-				"p17"
+				"p7"
 			],
-			[
-				"p19"
-			],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p20": {
-		"mesh_name": "wfc_module_5",
-		"mesh_rotation": 0,
-		"posX": "12",
-		"negX": "12f",
-		"posY": "13s",
-		"negY": "14s",
-		"posZ": "v2_0",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p20"
-			],
-			[
-				"p22"
-			],
-			[
-				"p20"
-			],
-			[
-				"p22"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p21": {
-		"mesh_name": "wfc_module_5",
-		"mesh_rotation": 1,
-		"posX": "14s",
-		"negX": "13s",
-		"posY": "12",
-		"negY": "12f",
-		"posZ": "v2_1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p23"
-			],
-			[
-				"p21"
-			],
-			[
-				"p23"
-			],
-			[
-				"p21"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p22": {
-		"mesh_name": "wfc_module_5",
-		"mesh_rotation": 2,
-		"posX": "12f",
-		"negX": "12",
-		"posY": "14s",
-		"negY": "13s",
-		"posZ": "v2_2",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p22"
-			],
-			[
-				"p20"
-			],
-			[
-				"p22"
-			],
-			[
-				"p20"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p23": {
-		"mesh_name": "wfc_module_5",
-		"mesh_rotation": 3,
-		"posX": "13s",
-		"negX": "14s",
-		"posY": "12f",
-		"negY": "12",
-		"posZ": "v2_3",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p21"
-			],
-			[
-				"p23"
-			],
-			[
-				"p21"
-			],
-			[
-				"p23"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p24": {
-		"mesh_name": "wfc_module_6",
-		"mesh_rotation": 0,
-		"posX": "15",
-		"negX": "17s",
-		"posY": "16",
-		"negY": "18",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[
-				"p26"
-			],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p25": {
-		"mesh_name": "wfc_module_6",
-		"mesh_rotation": 1,
-		"posX": "18",
-		"negX": "16",
-		"posY": "15",
-		"negY": "17s",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[
-				"p27"
-			],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p26": {
-		"mesh_name": "wfc_module_6",
-		"mesh_rotation": 2,
-		"posX": "17s",
-		"negX": "15",
-		"posY": "18",
-		"negY": "16",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p24"
-			],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p27": {
-		"mesh_name": "wfc_module_6",
-		"mesh_rotation": 3,
-		"posX": "16",
-		"negX": "18",
-		"posY": "17s",
-		"negY": "15",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[
-				"p25"
-			],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p28": {
-		"mesh_name": "wfc_module_7",
-		"mesh_rotation": 0,
-		"posX": "19",
-		"negX": "21",
-		"posY": "20",
-		"negY": "22",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p29": {
-		"mesh_name": "wfc_module_7",
-		"mesh_rotation": 1,
-		"posX": "22",
-		"negX": "20",
-		"posY": "19",
-		"negY": "21",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p30": {
-		"mesh_name": "wfc_module_7",
-		"mesh_rotation": 2,
-		"posX": "21",
-		"negX": "19",
-		"posY": "22",
-		"negY": "20",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p31": {
-		"mesh_name": "wfc_module_7",
-		"mesh_rotation": 3,
-		"posX": "20",
-		"negX": "22",
-		"posY": "21",
-		"negY": "19",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p32": {
-		"mesh_name": "wfc_module_8",
-		"mesh_rotation": 0,
-		"posX": "23",
-		"negX": "25",
-		"posY": "24s",
-		"negY": "26",
-		"posZ": "v3_0",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[
-				"p34"
-			],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p33": {
-		"mesh_name": "wfc_module_8",
-		"mesh_rotation": 1,
-		"posX": "26",
-		"negX": "24s",
-		"posY": "23",
-		"negY": "25",
-		"posZ": "v3_1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[
-				"p35"
-			],
-			[],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p34": {
-		"mesh_name": "wfc_module_8",
-		"mesh_rotation": 2,
-		"posX": "25",
-		"negX": "23",
-		"posY": "26",
-		"negY": "24s",
-		"posZ": "v3_2",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[
-				"p32"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p35": {
-		"mesh_name": "wfc_module_8",
-		"mesh_rotation": 3,
-		"posX": "24s",
-		"negX": "26",
-		"posY": "25",
-		"negY": "23",
-		"posZ": "v3_3",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p33"
-			],
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p36": {
-		"mesh_name": "wfc_module_9",
-		"mesh_rotation": 0,
-		"posX": "27",
-		"negX": "29",
-		"posY": "28",
-		"negY": "30",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p37": {
-		"mesh_name": "wfc_module_9",
-		"mesh_rotation": 1,
-		"posX": "30",
-		"negX": "28",
-		"posY": "27",
-		"negY": "29",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p38": {
-		"mesh_name": "wfc_module_9",
-		"mesh_rotation": 2,
-		"posX": "29",
-		"negX": "27",
-		"posY": "30",
-		"negY": "28",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p39": {
-		"mesh_name": "wfc_module_9",
-		"mesh_rotation": 3,
-		"posX": "28",
-		"negX": "30",
-		"posY": "29",
-		"negY": "27",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p40": {
-		"mesh_name": "wfc_module_10",
-		"mesh_rotation": 0,
-		"posX": "31",
-		"negX": "33",
-		"posY": "32",
-		"negY": "34",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p41": {
-		"mesh_name": "wfc_module_10",
-		"mesh_rotation": 1,
-		"posX": "34",
-		"negX": "32",
-		"posY": "31",
-		"negY": "33",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p42": {
-		"mesh_name": "wfc_module_10",
-		"mesh_rotation": 2,
-		"posX": "33",
-		"negX": "31",
-		"posY": "34",
-		"negY": "32",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p43": {
-		"mesh_name": "wfc_module_10",
-		"mesh_rotation": 3,
-		"posX": "32",
-		"negX": "34",
-		"posY": "33",
-		"negY": "31",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p44": {
-		"mesh_name": "wfc_module_11",
-		"mesh_rotation": 0,
-		"posX": "35",
-		"negX": "37",
-		"posY": "36s",
-		"negY": "38",
-		"posZ": "v4_0",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[
-				"p46"
-			],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p45": {
-		"mesh_name": "wfc_module_11",
-		"mesh_rotation": 1,
-		"posX": "38",
-		"negX": "36s",
-		"posY": "35",
-		"negY": "37",
-		"posZ": "v4_1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[
-				"p47"
-			],
-			[],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p46": {
-		"mesh_name": "wfc_module_11",
-		"mesh_rotation": 2,
-		"posX": "37",
-		"negX": "35",
-		"posY": "38",
-		"negY": "36s",
-		"posZ": "v4_2",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[
-				"p44"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p47": {
-		"mesh_name": "wfc_module_11",
-		"mesh_rotation": 3,
-		"posX": "36s",
-		"negX": "38",
-		"posY": "37",
-		"negY": "35",
-		"posZ": "v4_3",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p45"
-			],
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p48": {
-		"mesh_name": "wfc_module_12",
-		"mesh_rotation": 0,
-		"posX": "39",
-		"negX": "39f",
-		"posY": "40s",
-		"negY": "41s",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p48"
-			],
-			[
-				"p50"
-			],
-			[
-				"p48"
-			],
-			[
-				"p50"
-			],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p49": {
-		"mesh_name": "wfc_module_12",
-		"mesh_rotation": 1,
-		"posX": "41s",
-		"negX": "40s",
-		"posY": "39",
-		"negY": "39f",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p51"
-			],
-			[
-				"p49"
-			],
-			[
-				"p51"
-			],
-			[
-				"p49"
-			],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p50": {
-		"mesh_name": "wfc_module_12",
-		"mesh_rotation": 2,
-		"posX": "39f",
-		"negX": "39",
-		"posY": "41s",
-		"negY": "40s",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p50"
-			],
-			[
-				"p48"
-			],
-			[
-				"p50"
-			],
-			[
-				"p48"
-			],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p51": {
-		"mesh_name": "wfc_module_12",
-		"mesh_rotation": 3,
-		"posX": "40s",
-		"negX": "41s",
-		"posY": "39f",
-		"negY": "39",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p49"
-			],
-			[
-				"p51"
-			],
-			[
-				"p49"
-			],
-			[
-				"p51"
-			],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p52": {
-		"mesh_name": "wfc_module_13",
-		"mesh_rotation": 0,
-		"posX": "42",
-		"negX": "42f",
-		"posY": "43s",
-		"negY": "44s",
-		"posZ": "v5_0",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p52"
-			],
-			[
-				"p54"
-			],
-			[
-				"p52"
-			],
-			[
-				"p54"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p53": {
-		"mesh_name": "wfc_module_13",
-		"mesh_rotation": 1,
-		"posX": "44s",
-		"negX": "43s",
-		"posY": "42",
-		"negY": "42f",
-		"posZ": "v5_1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p55"
-			],
-			[
-				"p53"
-			],
-			[
-				"p55"
-			],
-			[
-				"p53"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p54": {
-		"mesh_name": "wfc_module_13",
-		"mesh_rotation": 2,
-		"posX": "42f",
-		"negX": "42",
-		"posY": "44s",
-		"negY": "43s",
-		"posZ": "v5_2",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p54"
-			],
-			[
-				"p52"
-			],
-			[
-				"p54"
-			],
-			[
-				"p52"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p55": {
-		"mesh_name": "wfc_module_13",
-		"mesh_rotation": 3,
-		"posX": "43s",
-		"negX": "44s",
-		"posY": "42f",
-		"negY": "42",
-		"posZ": "v5_3",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p53"
-			],
-			[
-				"p55"
-			],
-			[
-				"p53"
-			],
-			[
-				"p55"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p56": {
-		"mesh_name": "wfc_module_14",
-		"mesh_rotation": 0,
-		"posX": "45",
-		"negX": "46",
-		"posY": "45f",
-		"negY": "46f",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p57"
-			],
-			[
-				"p59"
-			],
-			[
-				"p57"
-			],
-			[
-				"p59"
-			],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p57": {
-		"mesh_name": "wfc_module_14",
-		"mesh_rotation": 1,
-		"posX": "46f",
-		"negX": "45f",
-		"posY": "45",
-		"negY": "46",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p56"
-			],
-			[
-				"p58"
-			],
-			[
-				"p56"
-			],
-			[
-				"p58"
-			],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p58": {
-		"mesh_name": "wfc_module_14",
-		"mesh_rotation": 2,
-		"posX": "46",
-		"negX": "45",
-		"posY": "46f",
-		"negY": "45f",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p59"
-			],
-			[
-				"p57"
-			],
-			[
-				"p59"
-			],
-			[
-				"p57"
-			],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p59": {
-		"mesh_name": "wfc_module_14",
-		"mesh_rotation": 3,
-		"posX": "45f",
-		"negX": "46f",
-		"posY": "46",
-		"negY": "45",
-		"posZ": "-1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p58"
-			],
-			[
-				"p56"
-			],
-			[
-				"p58"
-			],
-			[
-				"p56"
-			],
-			[
-				"p-1"
-			],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p60": {
-		"mesh_name": "wfc_module_15",
-		"mesh_rotation": 0,
-		"posX": "47",
-		"negX": "49",
-		"posY": "48s",
-		"negY": "50",
-		"posZ": "v6_0",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[
-				"p62"
-			],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p61": {
-		"mesh_name": "wfc_module_15",
-		"mesh_rotation": 1,
-		"posX": "50",
-		"negX": "48s",
-		"posY": "47",
-		"negY": "49",
-		"posZ": "v6_1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[
-				"p63"
-			],
-			[],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p62": {
-		"mesh_name": "wfc_module_15",
-		"mesh_rotation": 2,
-		"posX": "49",
-		"negX": "47",
-		"posY": "50",
-		"negY": "48s",
-		"posZ": "v6_2",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[],
-			[],
-			[],
-			[
-				"p60"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p63": {
-		"mesh_name": "wfc_module_15",
-		"mesh_rotation": 3,
-		"posX": "48s",
-		"negX": "50",
-		"posY": "49",
-		"negY": "47",
-		"posZ": "v6_3",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p61"
-			],
-			[],
-			[],
-			[],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p64": {
-		"mesh_name": "wfc_module_16",
-		"mesh_rotation": 0,
-		"posX": "51s",
-		"negX": "52",
-		"posY": "51s",
-		"negY": "52f",
-		"posZ": "v7_0",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p65",
-				"p66"
-			],
-			[
-				"p66",
-				"p67"
-			],
-			[
-				"p65"
-			],
-			[
-				"p67"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p65": {
-		"mesh_name": "wfc_module_16",
-		"mesh_rotation": 1,
-		"posX": "52f",
-		"negX": "51s",
-		"posY": "51s",
-		"negY": "52",
-		"posZ": "v7_1",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p64"
-			],
-			[
-				"p66",
-				"p67"
-			],
-			[
-				"p64",
-				"p67"
-			],
-			[
-				"p66"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p66": {
-		"mesh_name": "wfc_module_16",
-		"mesh_rotation": 2,
-		"posX": "52",
-		"negX": "51s",
-		"posY": "52f",
-		"negY": "51s",
-		"posZ": "v7_2",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p67"
-			],
-			[
-				"p65"
-			],
-			[
-				"p64",
-				"p67"
-			],
-			[
-				"p64",
-				"p65"
-			],
-			[],
-			[
-				"p-1"
-			]
-		]
-	},
-	"p67": {
-		"mesh_name": "wfc_module_16",
-		"mesh_rotation": 3,
-		"posX": "51s",
-		"negX": "52f",
-		"posY": "52",
-		"negY": "51s",
-		"posZ": "v7_3",
-		"negZ": "-1",
-		"constrain_to": "",
-		"constrain_from": "",
-		"weight": 1,
-		"valid_neighbours": [
-			[
-				"p65",
-				"p66"
-			],
-			[
-				"p64"
-			],
-			[
-				"p66"
-			],
-			[
-				"p64",
-				"p65"
-			],
-			[],
 			[
 				"p-1"
 			]
@@ -2041,15 +929,46 @@
 		"weight": 1,
 		"valid_neighbours": [
 			[
+				"p6",
+				"p7",
+				"p11",
+				"p13",
 				"p-1"
 			],
 			[
+				"p4",
+				"p7",
+				"p8",
+				"p14",
 				"p-1"
 			],
 			[
+				"p4",
+				"p5",
+				"p9",
+				"p15",
 				"p-1"
 			],
 			[
+				"p5",
+				"p6",
+				"p10",
+				"p12",
+				"p-1"
+			],
+			[
+				"p0",
+				"p1",
+				"p2",
+				"p3",
+				"p12",
+				"p13",
+				"p14",
+				"p15",
+				"p16",
+				"p17",
+				"p18",
+				"p19",
 				"p-1"
 			],
 			[
@@ -2065,101 +984,6 @@
 				"p9",
 				"p10",
 				"p11",
-				"p12",
-				"p13",
-				"p14",
-				"p15",
-				"p16",
-				"p17",
-				"p18",
-				"p19",
-				"p20",
-				"p21",
-				"p22",
-				"p23",
-				"p24",
-				"p25",
-				"p26",
-				"p27",
-				"p28",
-				"p29",
-				"p30",
-				"p31",
-				"p32",
-				"p33",
-				"p34",
-				"p35",
-				"p36",
-				"p37",
-				"p38",
-				"p39",
-				"p40",
-				"p41",
-				"p42",
-				"p43",
-				"p44",
-				"p45",
-				"p46",
-				"p47",
-				"p48",
-				"p49",
-				"p50",
-				"p51",
-				"p52",
-				"p53",
-				"p54",
-				"p55",
-				"p56",
-				"p57",
-				"p58",
-				"p59",
-				"p60",
-				"p61",
-				"p62",
-				"p63",
-				"p64",
-				"p65",
-				"p66",
-				"p67",
-				"p-1"
-			],
-			[
-				"p4",
-				"p5",
-				"p6",
-				"p7",
-				"p12",
-				"p13",
-				"p14",
-				"p15",
-				"p16",
-				"p17",
-				"p18",
-				"p19",
-				"p24",
-				"p25",
-				"p26",
-				"p27",
-				"p28",
-				"p29",
-				"p30",
-				"p31",
-				"p36",
-				"p37",
-				"p38",
-				"p39",
-				"p40",
-				"p41",
-				"p42",
-				"p43",
-				"p48",
-				"p49",
-				"p50",
-				"p51",
-				"p56",
-				"p57",
-				"p58",
-				"p59",
 				"p-1"
 			]
 		]

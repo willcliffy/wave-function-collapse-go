@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	SIZE = Vector3i{10, 1, 10}
+	SIZE = Vector3i{12, 2, 12}
 )
 
 func main() {

@@ -80,6 +80,74 @@ func (wfc *WFC) Initialize(newSize Vector3i, allPrototypes map[string]WFCPrototy
 		}
 		wfc.waveFunction = append(wfc.waveFunction, ySlice)
 	}
+
+	wfc.applyCustomConstraints()
+}
+
+func (wfc *WFC) applyCustomConstraints() []Vector3i {
+	var stack []Vector3i
+
+	for z := 0; z < wfc.size.Z; z++ {
+		for y := 0; y < wfc.size.Y; y++ {
+			for x := 0; x < wfc.size.X; x++ {
+				coords := Vector3i{x, y, z}
+				protos := wfc.waveFunction[z][y][x]
+
+				if y == wfc.size.Y-1 {
+					for proto := range duplicateMap(protos) {
+						neighs := protos[proto].ValidNeighbours[P_Z]
+						if StringSliceContains(neighs, "p-1") {
+							delete(protos, proto)
+							if !Vector3iSliceContains(stack, coords) {
+								stack = append(stack, coords)
+							}
+						}
+					}
+				}
+
+				if y > 0 {
+					for proto := range duplicateMap(protos) {
+						customConstraint := protos[proto].ConstrainTo
+						if customConstraint == CONSTRAINT_BOTTOM {
+							delete(protos, proto)
+							if !Vector3iSliceContains(stack, coords) {
+								stack = append(stack, coords)
+							}
+						}
+					}
+				}
+
+				if y < wfc.size.Y-1 {
+					for proto := range duplicateMap(protos) {
+						customConstraint := protos[proto].ConstrainTo
+						if customConstraint == CONSTRAINT_TOP {
+							delete(protos, proto)
+							if !Vector3iSliceContains(stack, coords) {
+								stack = append(stack, coords)
+							}
+						}
+					}
+				}
+
+				if y == 0 {
+					for proto := range duplicateMap(protos) {
+						neighs := protos[proto].ValidNeighbours[N_Z]
+						customConstraint := protos[proto].ConstrainFrom
+						if !StringSliceContains(neighs, "p-1") || customConstraint == CONSTRAINT_BOTTOM {
+							delete(protos, proto)
+							if !Vector3iSliceContains(stack, coords) {
+								stack = append(stack, coords)
+							}
+						}
+					}
+				}
+
+				wfc.waveFunction[z][y][x] = protos
+			}
+		}
+	}
+
+	return stack
 }
 
 func (wfc *WFC) Run(doneChan chan bool) {
@@ -92,7 +160,7 @@ func (wfc *WFC) Run(doneChan chan bool) {
 
 		wfc.collapse(min_entropy_coords)
 		fmt.Printf("tick\n")
-		wfc.propagate(min_entropy_coords, false)
+		wfc.propagateCoord(min_entropy_coords, false)
 		fmt.Printf("tick\n")
 	}
 
@@ -104,71 +172,53 @@ func (wfc WFC) GetFinalMap() *WFCMapLinear {
 		return nil
 	}
 
-	// result := WFCMap{
-	// 	Size:       wfc.size,
-	// 	Prototypes: make([][][]WFCPrototype, wfc.size.Z),
-	// }
-
-	// for z := 0; z < wfc.size.Z; z++ {
-	// 	result.Prototypes[z] = make([][]WFCPrototype, wfc.size.Y)
-	// 	for y := 0; y < wfc.size.Y; y++ {
-	// 		result.Prototypes[z][y] = make([]WFCPrototype, wfc.size.X)
-	// 		for x := 0; x < wfc.size.Z; x++ {
-	// 			prototypes := wfc.waveFunction[z][y][x]
-
-	// 			// only grab collapsed cells (?)
-	// 			if len(prototypes) > 1 {
-	// 				fmt.Printf("[WARN] Uncollapsed cell in GetFinalMap")
-	// 				continue
-	// 			}
-
-	// 			for _, prototype := range prototypes {
-	// 				result.Prototypes[x][y][z] = prototype
-	// 			}
-	// 		}
-	// 	}
-	// }
-
 	return &wfc.finalMap
 }
 
-func (wfc *WFC) propagate(coords *Vector3i, singleIteration bool) {
+func (wfc *WFC) propagateCoord(coords *Vector3i, singleIteration bool) {
 	var stack []Vector3i
 	if coords != nil {
 		stack = append(stack, *coords)
 	}
+	wfc.propagate(stack, singleIteration)
+}
 
+func (wfc *WFC) propagate(stack []Vector3i, singleIteration bool) {
 	for len(stack) > 0 {
 		stackLen := len(stack)
-		currentCoords := stack[stackLen-1]
+		coords := stack[stackLen-1]
 		stack = stack[:stackLen-1]
 
-		for _, direction := range wfc.validDirections(&currentCoords) {
-			otherCoords := currentCoords.Add(direction)
-			otherProtos := wfc.waveFunction[otherCoords.Z][otherCoords.Y][otherCoords.X]
+		for _, direction := range wfc.validDirections(&coords) {
+			otherCoords := coords.Add(direction)
 
+			otherProtos := wfc.waveFunction[otherCoords.Z][otherCoords.Y][otherCoords.X]
 			if len(otherProtos) == 0 {
 				continue
 			}
 
-			possibleNeighbors := wfc.getPossibleNeighbours(&currentCoords, direction)
+			possibleNeighbors := wfc.getPossibleNeighbours(&coords, direction)
 			for otherProto := range otherProtos {
 				if StringSliceContains(possibleNeighbors, otherProto) {
 					continue
 				}
 
 				// Constrain
-				delete(wfc.waveFunction[coords.Z][coords.Y][coords.X], otherProto)
+				delete(wfc.waveFunction[otherCoords.Z][otherCoords.Y][otherCoords.X], otherProto)
 
 				if len(wfc.waveFunction[coords.Z][coords.Y][coords.X]) == 1 {
 					for _, v := range wfc.waveFunction[coords.Z][coords.Y][coords.X] {
-						wfc.finalMap.Prototypes = append(wfc.finalMap.Prototypes, v)
+						wfc.finalMap.Prototypes = append(wfc.finalMap.Prototypes, *v.Finalize(&coords))
 					}
 				}
 
 				if !Vector3iSliceContains(stack, otherCoords) {
+					// fmt.Printf("Stack doesnt contain  %v at %v\n", otherCoords, coords)
+					// fmt.Printf("\tStack:              %v\n", stack)
+					// fmt.Printf("\tPossible Neighbors: %v\n", possibleNeighbors)
+					// fmt.Printf("\tPossibilities:      %v\n", wfc.waveFunction[coords.Z][coords.Y][coords.X])
+					// fmt.Printf("\tOther Proto:        %v\n", otherProto)
 					stack = append(stack, otherCoords)
-					fmt.Printf("Stack doesnt contain %v - %v\n", otherCoords, stack)
 				}
 			}
 		}
@@ -210,8 +260,9 @@ func (wfc *WFC) getPossibleNeighbours(coords *Vector3i, dir Vector3i) []string {
 func (wfc *WFC) collapse(coords *Vector3i) {
 	possibleProtos := wfc.waveFunction[coords.Z][coords.Y][coords.X]
 	protoName := wfc.weightedChoice(possibleProtos)
-	wfc.waveFunction[coords.Z][coords.Y][coords.X] = map[string]WFCPrototype{protoName: possibleProtos[protoName]}
-	wfc.finalMap.Prototypes = append(wfc.finalMap.Prototypes, possibleProtos[protoName])
+	proto := possibleProtos[protoName]
+	wfc.waveFunction[coords.Z][coords.Y][coords.X] = map[string]WFCPrototype{protoName: proto}
+	wfc.finalMap.Prototypes = append(wfc.finalMap.Prototypes, *proto.Finalize(coords))
 }
 
 func (wfc *WFC) weightedChoice(prototypes map[string]WFCPrototype) string {

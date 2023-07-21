@@ -18,3 +18,11 @@ func sortFloat64Slice(slice []float64) {
 		}
 	}
 }
+
+func duplicateMap(originalMap map[string]WFCPrototype) map[string]WFCPrototype {
+	duplicate := make(map[string]WFCPrototype, len(originalMap))
+	for key, value := range originalMap {
+		duplicate[key] = value
+	}
+	return duplicate
+}
