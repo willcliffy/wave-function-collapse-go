@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"time"
 )
 
 const (
@@ -38,14 +39,13 @@ var (
 )
 
 type WFCModel interface {
-	Initialize(newSize Vector3i, allPrototypes map[string]WFCPrototype)
-	Run(chan bool)
-	GetFinalMap() *WFCMapLinear
+	Initialize(seed int64, newSize Vector3i, allPrototypes map[string]WFCPrototype)
+	Run(done chan bool)
+	GetFinalMap(onlyCollapsed bool) *WFCMap
 }
 
 type WFC struct {
 	waveFunction [][][]map[string]WFCPrototype
-	finalMap     WFCMapLinear
 	size         Vector3i
 }
 
@@ -61,9 +61,10 @@ func deepCopy(src, dst interface{}) error {
 	return gob.NewDecoder(&buf).Decode(dst)
 }
 
-func (wfc *WFC) Initialize(newSize Vector3i, allPrototypes map[string]WFCPrototype) {
+func (wfc *WFC) Initialize(seed int64, newSize Vector3i, allPrototypes map[string]WFCPrototype) {
+	rand.Seed(seed)
+
 	wfc.size = newSize
-	wfc.finalMap.Size = newSize
 	for z := 0; z < wfc.size.Z; z++ {
 		var ySlice [][]map[string]WFCPrototype
 		for y := 0; y < wfc.size.Y; y++ {
@@ -81,7 +82,8 @@ func (wfc *WFC) Initialize(newSize Vector3i, allPrototypes map[string]WFCPrototy
 		wfc.waveFunction = append(wfc.waveFunction, ySlice)
 	}
 
-	wfc.applyCustomConstraints()
+	stack := wfc.applyCustomConstraints()
+	wfc.propagate(stack, false)
 }
 
 func (wfc *WFC) applyCustomConstraints() []Vector3i {
@@ -93,10 +95,12 @@ func (wfc *WFC) applyCustomConstraints() []Vector3i {
 				coords := Vector3i{x, y, z}
 				protos := wfc.waveFunction[z][y][x]
 
+				// constrain top layer to not contain any uncapped prototypes
 				if y == wfc.size.Y-1 {
 					for proto := range duplicateMap(protos) {
 						neighs := protos[proto].ValidNeighbours[P_Z]
-						if StringSliceContains(neighs, "p-1") {
+						if !StringSliceContains(neighs, "p-1") {
+							// fmt.Printf("Constraining %v from being %v since it's uncapped\n", coords, proto)
 							delete(protos, proto)
 							if !Vector3iSliceContains(stack, coords) {
 								stack = append(stack, coords)
@@ -105,10 +109,12 @@ func (wfc *WFC) applyCustomConstraints() []Vector3i {
 					}
 				}
 
+				// everything other than the bottom
 				if y > 0 {
 					for proto := range duplicateMap(protos) {
 						customConstraint := protos[proto].ConstrainTo
 						if customConstraint == CONSTRAINT_BOTTOM {
+							// fmt.Printf("Constraining %v from being %v since it has constraint BOT\n", coords, proto)
 							delete(protos, proto)
 							if !Vector3iSliceContains(stack, coords) {
 								stack = append(stack, coords)
@@ -117,10 +123,12 @@ func (wfc *WFC) applyCustomConstraints() []Vector3i {
 					}
 				}
 
+				// everything other than the top
 				if y < wfc.size.Y-1 {
 					for proto := range duplicateMap(protos) {
 						customConstraint := protos[proto].ConstrainTo
 						if customConstraint == CONSTRAINT_TOP {
+							// fmt.Printf("Constraining %v from being %v since it has constraint TOP\n", coords, proto)
 							delete(protos, proto)
 							if !Vector3iSliceContains(stack, coords) {
 								stack = append(stack, coords)
@@ -129,11 +137,13 @@ func (wfc *WFC) applyCustomConstraints() []Vector3i {
 					}
 				}
 
+				// constrain bottom layer so we don't start with any top-cliff parts at the bottom
 				if y == 0 {
 					for proto := range duplicateMap(protos) {
 						neighs := protos[proto].ValidNeighbours[N_Z]
 						customConstraint := protos[proto].ConstrainFrom
 						if !StringSliceContains(neighs, "p-1") || customConstraint == CONSTRAINT_BOTTOM {
+							// fmt.Printf("Constraining %v from being %v since it's a top-cliff part\n", coords, proto)
 							delete(protos, proto)
 							if !Vector3iSliceContains(stack, coords) {
 								stack = append(stack, coords)
@@ -151,6 +161,7 @@ func (wfc *WFC) applyCustomConstraints() []Vector3i {
 }
 
 func (wfc *WFC) Run(doneChan chan bool) {
+	s := time.Now()
 	for !wfc.isCollapsed() {
 		min_entropy_coords := wfc.getMinEntropyCoords()
 		if min_entropy_coords == nil {
@@ -159,20 +170,46 @@ func (wfc *WFC) Run(doneChan chan bool) {
 		}
 
 		wfc.collapse(min_entropy_coords)
-		fmt.Printf("tick\n")
 		wfc.propagateCoord(min_entropy_coords, false)
-		fmt.Printf("tick\n")
+		// fmt.Printf("tick\n")
 	}
+
+	fmt.Printf("WFC Collapsed in %v\n", time.Since(s))
 
 	doneChan <- true
 }
 
-func (wfc WFC) GetFinalMap() *WFCMapLinear {
+func (wfc WFC) GetFinalMap(onlyCollapsed bool) *WFCMap {
 	if !wfc.isCollapsed() {
 		return nil
 	}
 
-	return &wfc.finalMap
+	var wfcMap WFCMap
+	wfcMap.Size = wfc.size
+
+	wfcMap.Prototypes = make([][][]WFCPrototypeFinalized, wfc.size.Z)
+	for z := range wfc.waveFunction {
+		wfcMap.Prototypes[z] = make([][]WFCPrototypeFinalized, wfc.size.Y)
+		for y := range wfc.waveFunction[z] {
+			wfcMap.Prototypes[z][y] = make([]WFCPrototypeFinalized, wfc.size.X)
+			for x, cell := range wfc.waveFunction[z][y] {
+				if len(cell) > 1 {
+					fmt.Printf("[WARN] Uncollapsed cell in GetFinalMap: (%d, %d, %d) - %v\n", x, y, z, cell)
+					if onlyCollapsed {
+						continue
+					}
+				} else if len(cell) == 0 {
+					fmt.Printf("[WARN] Nil'd cell in GetFinalMap: (%d, %d, %d) - %v\n", x, y, z, cell)
+				}
+
+				for _, proto := range cell {
+					wfcMap.Prototypes[z][y][x] = *proto.Finalize(&Vector3i{X: x, Y: y, Z: z})
+				}
+			}
+		}
+	}
+
+	return &wfcMap
 }
 
 func (wfc *WFC) propagateCoord(coords *Vector3i, singleIteration bool) {
@@ -205,12 +242,6 @@ func (wfc *WFC) propagate(stack []Vector3i, singleIteration bool) {
 
 				// Constrain
 				delete(wfc.waveFunction[otherCoords.Z][otherCoords.Y][otherCoords.X], otherProto)
-
-				if len(wfc.waveFunction[coords.Z][coords.Y][coords.X]) == 1 {
-					for _, v := range wfc.waveFunction[coords.Z][coords.Y][coords.X] {
-						wfc.finalMap.Prototypes = append(wfc.finalMap.Prototypes, *v.Finalize(&coords))
-					}
-				}
 
 				if !Vector3iSliceContains(stack, otherCoords) {
 					// fmt.Printf("Stack doesnt contain  %v at %v\n", otherCoords, coords)
@@ -262,7 +293,6 @@ func (wfc *WFC) collapse(coords *Vector3i) {
 	protoName := wfc.weightedChoice(possibleProtos)
 	proto := possibleProtos[protoName]
 	wfc.waveFunction[coords.Z][coords.Y][coords.X] = map[string]WFCPrototype{protoName: proto}
-	wfc.finalMap.Prototypes = append(wfc.finalMap.Prototypes, *proto.Finalize(coords))
 }
 
 func (wfc *WFC) weightedChoice(prototypes map[string]WFCPrototype) string {
@@ -270,7 +300,7 @@ func (wfc *WFC) weightedChoice(prototypes map[string]WFCPrototype) string {
 
 	for p, properties := range prototypes {
 		w := float64(properties.Weight)
-		w += rand.Float64()*(1.0-(-1.0)) + (-1.0)
+		w += 2.0*rand.Float64() - 1.0
 		protoWeights[w] = p
 	}
 

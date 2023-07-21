@@ -6,9 +6,13 @@ The purpose of pulling this portion of the process out of GDScript and into Godo
 
 ## Demonstration
 
+![simple tileset screenshot](assets/GodotDemoPreview.gif)
+
 See the `GodotDemo` directory for more information.
 
-GIFs, videos, and screenshots coming soon!
+I used this simple, five-module set that I made in Blender:
+
+<img src="assets/WFC_simple_tileset.png" width="400" height="400">
 
 ## Instructions
 

@@ -254,7 +254,7 @@
 		"negZ": "v0_0",
 		"constrain_to": "",
 		"constrain_from": "",
-		"weight": 1,
+		"weight": 0.5,
 		"valid_neighbours": [
 			[
 				"p-1"
@@ -289,7 +289,7 @@
 		"negZ": "v0_1",
 		"constrain_to": "",
 		"constrain_from": "",
-		"weight": 1,
+		"weight": 0.5,
 		"valid_neighbours": [
 			[
 				"p-1"
@@ -324,7 +324,7 @@
 		"negZ": "v0_2",
 		"constrain_to": "",
 		"constrain_from": "",
-		"weight": 1,
+		"weight": 0.5,
 		"valid_neighbours": [
 			[
 				"p5",
@@ -359,7 +359,7 @@
 		"negZ": "v0_3",
 		"constrain_to": "",
 		"constrain_from": "",
-		"weight": 1,
+		"weight": 0.5,
 		"valid_neighbours": [
 			[
 				"p4",
@@ -562,7 +562,7 @@
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
-		"weight": 1,
+		"weight": 2,
 		"valid_neighbours": [
 			[
 				"p12",
@@ -604,7 +604,7 @@
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
-		"weight": 1,
+		"weight": 2,
 		"valid_neighbours": [
 			[
 				"p0",
@@ -646,7 +646,7 @@
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
-		"weight": 1,
+		"weight": 2,
 		"valid_neighbours": [
 			[
 				"p14",
@@ -688,7 +688,7 @@
 		"negZ": "-1",
 		"constrain_to": "",
 		"constrain_from": "",
-		"weight": 1,
+		"weight": 2,
 		"valid_neighbours": [
 			[
 				"p-1"

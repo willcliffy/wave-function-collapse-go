@@ -5,15 +5,13 @@ extends Node
 
 const MAP_FILE_NAME = "map.json"
 
-# Assuming this node has a function spawn_mesh
+
 func spawn_mesh(mesh_name: String, position: Vector3, rotation: int):
-	#print(mesh_name)
-	
 	var inst = module_scene.duplicate()
 	add_child(inst)
 	# meshes.append(inst) # TODO - keep track and free
-	inst.transform = Transform3D(Basis(Vector3(0, 1, 0), rotation), position)
-
+	inst.position = position
+	inst.rotate_y((PI/2) * rotation)
 	var mesh = modules_scene.get_node(mesh_name).mesh.duplicate()
 	inst.mesh = mesh
 
@@ -34,11 +32,16 @@ func _ready():
 
 	var size = Vector3(json_dict["Size"]["X"], json_dict["Size"]["Y"], json_dict["Size"]["Z"])
 	print("Size: ", size)
+	$CameraBase.position = size / 2.0
+
 	var prototypes = json_dict["Prototypes"]
-	for prototype in prototypes:
-		var mesh_name = prototype["mesh_name"]
-		if mesh_name == "-1":
-			continue
-		var mesh_rotation = prototype["mesh_rotation"]
-		var position = Vector3(prototype["position"]["X"], prototype["position"]["Y"], prototype["position"]["Z"])
-		spawn_mesh(mesh_name, position, mesh_rotation)
+	for z in range(size.z):
+		for y in range(size.y):
+			for x in range(size.x):
+				var prototype = prototypes[z][y][x]
+
+				var mesh_name = prototype["mesh_name"]
+				if mesh_name == "-1":
+					continue
+				var mesh_rotation = prototype["mesh_rotation"]
+				spawn_mesh(mesh_name, Vector3(x, y, z), mesh_rotation)
