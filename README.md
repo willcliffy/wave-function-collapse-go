@@ -6,7 +6,9 @@ The purpose of pulling this portion of the process out of GDScript and into Godo
 
 ## Demonstration
 
-(coming soon)
+See the `GodotDemo` directory for more information.
+
+GIFs, videos, and screenshots coming soon!
 
 ## Instructions
 
@@ -34,6 +36,6 @@ The purpose of pulling this portion of the process out of GDScript and into Godo
 
     - TODO - make more explicit, provide simplified example or pseudocode
 
-3. Run this program with `go run . --input prototype_data.json`, substituting `prototype_data.json` as needed.
+3. Run this program with `go run . --input prototype_data.json --output map.json`, substituting `prototype_data.json` and `map.json` as needed.
 
 4. Use the `map.json` file to load the map in your engine of choice. A demonstration can be found in the `GodotDemo` directory.

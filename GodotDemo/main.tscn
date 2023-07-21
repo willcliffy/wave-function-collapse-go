@@ -1,14 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4jjje44lcsaq"]
+[gd_scene load_steps=3 format=3 uid="uid://c4jjje44lcsaq"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_27yc4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ggotf"]
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node"]
+script = ExtResource("1_27yc4")
 
 [node name="CameraBase" type="Node3D" parent="."]
-transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 
 [node name="Camera" type="Camera3D" parent="CameraBase"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.07)
 
 [node name="ReferenceCube" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ggotf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
