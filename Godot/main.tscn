@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4jjje44lcsaq"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_27yc4"]
+[ext_resource type="Script" path="res://camera.gd" id="2_wyn75"]
+[ext_resource type="Texture2D" uid="uid://3ax2glbmgbte" path="res://belfast_sunset_puresky_2k.exr" id="3_aot6g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ggotf"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u3q2q"]
+panorama = ExtResource("3_aot6g")
+
+[sub_resource type="Sky" id="Sky_da545"]
+sky_material = SubResource("PanoramaSkyMaterial_u3q2q")
+
+[sub_resource type="Environment" id="Environment_4wde2"]
+background_mode = 2
+sky = SubResource("Sky_da545")
+ambient_light_source = 3
+
+[node name="Main" type="Node"]
+script = ExtResource("1_27yc4")
+
+[node name="CameraBase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0, 0)
+script = ExtResource("2_wyn75")
+
+[node name="Camera" type="Camera3D" parent="CameraBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 25.62)
+
+[node name="ReferenceCube" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_ggotf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4wde2")
