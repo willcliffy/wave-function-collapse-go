@@ -5,7 +5,7 @@ extends Node3D
 const CAMERA_ROTATION_SPEED = 50.0
 
 func _process(delta):
-	rotate_y(delta / 4.0)
+	rotate_y(delta / 6.0)
 
 func _input(event):
 	if not event is InputEventMouseButton: return

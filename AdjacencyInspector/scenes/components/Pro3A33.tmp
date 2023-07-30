@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpjyqjevf0jcq"]
+
+[ext_resource type="Script" path="res://src/proto_preview_component.gd" id="1_5xr5m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t30h1"]
+
+[sub_resource type="Sky" id="Sky_5db8a"]
+sky_material = SubResource("ProceduralSkyMaterial_t30h1")
+
+[sub_resource type="Environment" id="Environment_6dcrl"]
+background_mode = 2
+sky = SubResource("Sky_5db8a")
+
+[node name="PrototypePreview" type="Node3D"]
+script = ExtResource("1_5xr5m")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6dcrl")
+
+[node name="Node" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 0.886543, 0.462646, 0, -0.462646, 0.886543, 0, 1.33003, 2.46169)
+
+[node name="Light" type="DirectionalLight3D" parent="Node"]
+transform = Transform3D(0.939693, -0.116978, 0.321394, 0, 0.939693, 0.34202, -0.34202, -0.321394, 0.883022, 1, 1, 1)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci4exj1u7sx7t"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_narxd"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 2560.0
+offset_bottom = 1440.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_narxd")
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 1440.0
+vertical_scroll_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Scroll"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+alignment = 1
+
+[node name="0" type="HBoxContainer" parent="Scroll/VBox"]
+layout_mode = 2
