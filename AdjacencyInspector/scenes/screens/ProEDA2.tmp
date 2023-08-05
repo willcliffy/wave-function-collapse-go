@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=3 uid="uid://brqs2b3y5r26a"]
+
+[ext_resource type="Script" path="res://src/prototype_preview.gd" id="1_kou36"]
+[ext_resource type="Theme" uid="uid://bk85f5ywjm1sk" path="res://header_text_theme.tres" id="2_t774d"]
+
+[node name="Preview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kou36")
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Container" type="VBoxContainer" parent="Scroll"]
+layout_mode = 2
+
+[node name="Preview" type="HBoxContainer" parent="Scroll/Container"]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Scroll/Container/Preview"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="Scroll/Container/Preview/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(720, 720)
+render_target_update_mode = 4
+
+[node name="Neighbors" type="HBoxContainer" parent="Scroll/Container"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Top" type="VBoxContainer" parent="Scroll/Container/Neighbors"]
+custom_minimum_size = Vector2(425, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroll/Container/Neighbors/Top"]
+layout_mode = 2
+theme = ExtResource("2_t774d")
+text = "TOP"
+horizontal_alignment = 1
+
+[node name="Bottom" type="VBoxContainer" parent="Scroll/Container/Neighbors"]
+custom_minimum_size = Vector2(425, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroll/Container/Neighbors/Bottom"]
+layout_mode = 2
+theme = ExtResource("2_t774d")
+text = "BOTTOM
+"
+horizontal_alignment = 1
+
+[node name="PositiveX" type="VBoxContainer" parent="Scroll/Container/Neighbors"]
+custom_minimum_size = Vector2(425, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroll/Container/Neighbors/PositiveX"]
+layout_mode = 2
+theme = ExtResource("2_t774d")
+text = "+X
+"
+horizontal_alignment = 1
+
+[node name="PositiveZ" type="VBoxContainer" parent="Scroll/Container/Neighbors"]
+custom_minimum_size = Vector2(425, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroll/Container/Neighbors/PositiveZ"]
+layout_mode = 2
+theme = ExtResource("2_t774d")
+text = "+Z
+"
+horizontal_alignment = 1
+
+[node name="NegativeX" type="VBoxContainer" parent="Scroll/Container/Neighbors"]
+custom_minimum_size = Vector2(425, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroll/Container/Neighbors/NegativeX"]
+layout_mode = 2
+theme = ExtResource("2_t774d")
+text = "-X
+"
+horizontal_alignment = 1
+
+[node name="NegativeZ" type="VBoxContainer" parent="Scroll/Container/Neighbors"]
+custom_minimum_size = Vector2(425, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroll/Container/Neighbors/NegativeZ"]
+layout_mode = 2
+theme = ExtResource("2_t774d")
+text = "-Z
+"
+horizontal_alignment = 1

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://brqs2b3y5r26a"]
 
-[ext_resource type="Script" path="res://src/prototype_preview.gd" id="1_kou36"]
+[ext_resource type="Script" path="res://src/prototype_preview_screen.gd" id="1_xqiyk"]
 [ext_resource type="Theme" uid="uid://bk85f5ywjm1sk" path="res://header_text_theme.tres" id="2_t774d"]
 
 [node name="Preview" type="Control"]
@@ -10,7 +10,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_kou36")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_xqiyk")
 
 [node name="Container" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -19,88 +21,133 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
 [node name="Preview" type="HBoxContainer" parent="Container"]
-custom_minimum_size = Vector2(0, 800)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Container/Preview"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "TEST"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Container/Preview"]
+custom_minimum_size = Vector2(512, 512)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="SubViewport" type="SubViewport" parent="Container/Preview/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(720, 720)
 render_target_update_mode = 4
 
 [node name="Neighbors" type="HBoxContainer" parent="Container"]
-custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Top" type="VBoxContainer" parent="Container/Neighbors"]
-custom_minimum_size = Vector2(425, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="Container/Neighbors/Top"]
 layout_mode = 2
+size_flags_vertical = 1
 theme = ExtResource("2_t774d")
 text = "TOP"
 horizontal_alignment = 1
 
-[node name="Bottom" type="VBoxContainer" parent="Container/Neighbors"]
-custom_minimum_size = Vector2(425, 0)
+[node name="Scroll" type="ScrollContainer" parent="Container/Neighbors/Top"]
+custom_minimum_size = Vector2(288, 750)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="VB" type="VBoxContainer" parent="Container/Neighbors/Top/Scroll"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/Neighbors/Bottom"]
+[node name="Bot" type="VBoxContainer" parent="Container/Neighbors"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/Neighbors/Bot"]
 layout_mode = 2
 theme = ExtResource("2_t774d")
 text = "BOTTOM
 "
 horizontal_alignment = 1
 
-[node name="PositiveX" type="VBoxContainer" parent="Container/Neighbors"]
-custom_minimum_size = Vector2(425, 0)
+[node name="Scroll" type="ScrollContainer" parent="Container/Neighbors/Bot"]
+custom_minimum_size = Vector2(288, 655)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/Neighbors/PositiveX"]
+[node name="VB" type="VBoxContainer" parent="Container/Neighbors/Bot/Scroll"]
+layout_mode = 2
+
+[node name="PX" type="VBoxContainer" parent="Container/Neighbors"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/Neighbors/PX"]
 layout_mode = 2
 theme = ExtResource("2_t774d")
 text = "+X
 "
 horizontal_alignment = 1
 
-[node name="PositiveZ" type="VBoxContainer" parent="Container/Neighbors"]
-custom_minimum_size = Vector2(425, 0)
+[node name="Scroll" type="ScrollContainer" parent="Container/Neighbors/PX"]
+custom_minimum_size = Vector2(288, 655)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/Neighbors/PositiveZ"]
+[node name="VB" type="VBoxContainer" parent="Container/Neighbors/PX/Scroll"]
+layout_mode = 2
+
+[node name="PZ" type="VBoxContainer" parent="Container/Neighbors"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/Neighbors/PZ"]
 layout_mode = 2
 theme = ExtResource("2_t774d")
 text = "+Z
 "
 horizontal_alignment = 1
 
-[node name="NegativeX" type="VBoxContainer" parent="Container/Neighbors"]
-custom_minimum_size = Vector2(425, 0)
+[node name="Scroll" type="ScrollContainer" parent="Container/Neighbors/PZ"]
+custom_minimum_size = Vector2(288, 655)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/Neighbors/NegativeX"]
+[node name="VB" type="VBoxContainer" parent="Container/Neighbors/PZ/Scroll"]
+layout_mode = 2
+
+[node name="NX" type="VBoxContainer" parent="Container/Neighbors"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/Neighbors/NX"]
 layout_mode = 2
 theme = ExtResource("2_t774d")
 text = "-X
 "
 horizontal_alignment = 1
 
-[node name="NegativeZ" type="VBoxContainer" parent="Container/Neighbors"]
-custom_minimum_size = Vector2(425, 0)
+[node name="Scroll" type="ScrollContainer" parent="Container/Neighbors/NX"]
+custom_minimum_size = Vector2(288, 655)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/Neighbors/NegativeZ"]
+[node name="VB" type="VBoxContainer" parent="Container/Neighbors/NX/Scroll"]
+layout_mode = 2
+
+[node name="NZ" type="VBoxContainer" parent="Container/Neighbors"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/Neighbors/NZ"]
 layout_mode = 2
 theme = ExtResource("2_t774d")
 text = "-Z
 "
 horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="Container/Neighbors/NZ"]
+custom_minimum_size = Vector2(288, 655)
+layout_mode = 2
+
+[node name="VB" type="VBoxContainer" parent="Container/Neighbors/NZ/Scroll"]
+layout_mode = 2
