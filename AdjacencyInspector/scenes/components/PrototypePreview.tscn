@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpjyqjevf0jcq"]
 
-[ext_resource type="Script" path="res://src/proto_preview_component.gd" id="1_5xr5m"]
+[ext_resource type="Script" path="res://src/prototype_preview_component.gd" id="1_304mq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t30h1"]
 
@@ -12,7 +12,7 @@ background_mode = 2
 sky = SubResource("Sky_5db8a")
 
 [node name="PrototypePreview" type="Node3D"]
-script = ExtResource("1_5xr5m")
+script = ExtResource("1_304mq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6dcrl")

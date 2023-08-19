@@ -235,6 +235,8 @@ func (wfc *WFC) propagate(stack []Vector3i, singleIteration bool) {
 			}
 
 			possibleNeighbors := wfc.getPossibleNeighbours(&coords, direction)
+			startingEntropy := len(wfc.waveFunction[otherCoords.Z][otherCoords.Y][otherCoords.X])
+			constrained := false
 			for otherProto := range otherProtos {
 				if StringSliceContains(possibleNeighbors, otherProto) {
 					continue
@@ -242,6 +244,7 @@ func (wfc *WFC) propagate(stack []Vector3i, singleIteration bool) {
 
 				// Constrain
 				delete(wfc.waveFunction[otherCoords.Z][otherCoords.Y][otherCoords.X], otherProto)
+				constrained = true
 
 				if !Vector3iSliceContains(stack, otherCoords) {
 					// fmt.Printf("Stack doesnt contain  %v at %v\n", otherCoords, coords)
@@ -251,6 +254,10 @@ func (wfc *WFC) propagate(stack []Vector3i, singleIteration bool) {
 					// fmt.Printf("\tOther Proto:        %v\n", otherProto)
 					stack = append(stack, otherCoords)
 				}
+			}
+
+			if constrained && len(wfc.waveFunction[otherCoords.Z][otherCoords.Y][otherCoords.X]) <= 1 {
+				fmt.Printf("\timplicitly collapsed %v with entropy %d\n", otherCoords, startingEntropy)
 			}
 		}
 
@@ -290,9 +297,11 @@ func (wfc *WFC) getPossibleNeighbours(coords *Vector3i, dir Vector3i) []string {
 
 func (wfc *WFC) collapse(coords *Vector3i) {
 	possibleProtos := wfc.waveFunction[coords.Z][coords.Y][coords.X]
+	startingEntropy := len(possibleProtos)
 	protoName := wfc.weightedChoice(possibleProtos)
 	proto := possibleProtos[protoName]
 	wfc.waveFunction[coords.Z][coords.Y][coords.X] = map[string]WFCPrototype{protoName: proto}
+	fmt.Printf("Explicitly collapsed %v with entropy %d\n", coords, startingEntropy)
 }
 
 func (wfc *WFC) weightedChoice(prototypes map[string]WFCPrototype) string {

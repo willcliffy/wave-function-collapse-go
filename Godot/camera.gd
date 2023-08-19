@@ -4,10 +4,15 @@ extends Node3D
 
 const CAMERA_ROTATION_SPEED = 50.0
 
+var rotating = false
+
 func _process(delta):
-	rotate_y(delta / 6.0)
+	if rotating:
+		rotate_y(delta / 6.0)
 
 func _input(event):
+	if Input.is_action_just_pressed("toggle_rotation"):
+		rotating = not rotating
 	if not event is InputEventMouseButton: return
 	handle_camera_zoom_input(event)
 

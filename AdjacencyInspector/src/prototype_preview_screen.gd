@@ -11,27 +11,38 @@ var BASE_POSITION_INDEX = 0
 
 var preview_3d
 
+var free_queue = []
+
+
+func _exit_tree():
+	for item in free_queue:
+		item.queue_free()
+
+
 func _ready():
 	var neighbors = Main.prototype_data_v1[Main.selected_prototype]["valid_neighbours"]
 	var neighbor_ui_containers = [
+		$Container/Neighbors/PX/Scroll,
+		$Container/Neighbors/NZ/Scroll,
+
+		$Container/Neighbors/NX/Scroll,
+		$Container/Neighbors/PZ/Scroll,
+
 		$Container/Neighbors/Top/Scroll,
 		$Container/Neighbors/Bot/Scroll,
-		$Container/Neighbors/PX/Scroll,
-		$Container/Neighbors/PZ/Scroll,
-		$Container/Neighbors/NX/Scroll,
-		$Container/Neighbors/NZ/Scroll
 	]
 
 	var directions = [
+		Vector3(1, 0, 0),
+		Vector3(0, 0, -1),
+		Vector3(-1, 0, 0),
+		Vector3(0, 0, 1),
 		Vector3(0, 1, 0),
 		Vector3(0, -1, 0),
-		Vector3(1, 0, 0),
-		Vector3(0, 0, 1),
-		Vector3(-1, 0, 0),
-		Vector3(0, 0, -1),
 	]
 
 	for i in range(len(neighbors)):
+		print(neighbors)
 		load_direction(directions[i], neighbors[i], neighbor_ui_containers[i])
 
 	var selected_prototype = Main.prototype_data_v1[Main.selected_prototype]
@@ -40,13 +51,14 @@ func _ready():
 	preview_3d = proto_preview.instantiate()
 	preview_3d.name = selected_prototype["mesh_name"]
 	var proto_position = Vector3(1, 1, 1)
-	var proto_rotation = Vector3(0, selected_prototype["mesh_rotation"], 0)
+	var proto_rotation = Vector3(0, selected_prototype["mesh_rotation"]  * PI/2, 0)
 	preview_3d.set_mesh(proto_mesh.mesh, proto_position, proto_rotation)
 	$Container/Preview/SubViewportContainer/SubViewport.add_child(preview_3d)
 
 
 func load_direction(direction: Vector3, neighbors: Array, component: ScrollContainer):
 	component.custom_minimum_size = Vector2(410, 600 * (1.0 / 0.7))
+	var populated = false 
 	for proto in neighbors:
 		var proto_datum = Main.prototype_data_v1[proto]
 		var mesh_name = proto_datum["mesh_name"]
@@ -54,6 +66,8 @@ func load_direction(direction: Vector3, neighbors: Array, component: ScrollConta
 		if mesh_name == "-1":
 			continue
 
+		populated = true
+		
 		var proto_button: Control = prototype_instance.instantiate()
 		var mesh_position = BASE_POSITION + BASE_POSITION_INDEX * BASE_POSITION_INCREMENT
 		var mesh_rotation = Vector3(0, proto_datum["mesh_rotation"] * PI/2, 0)
@@ -67,3 +81,16 @@ func load_direction(direction: Vector3, neighbors: Array, component: ScrollConta
 		)
 		component.get_node("VB").add_child(proto_button)
 		BASE_POSITION_INDEX += 1
+		free_queue.append(proto_button)
+
+	if not populated:
+		return
+
+	var clear_button: Control = prototype_instance.instantiate()
+	clear_button.set_label("clear")
+	clear_button.set_custom_scale(0.70)
+	clear_button.get_node("Prototype").pressed.connect(
+			func():
+				preview_3d.set_neighbor(direction, null, null)
+	)
+	component.get_node("VB").add_child(clear_button)
